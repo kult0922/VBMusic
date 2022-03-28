@@ -5,6 +5,10 @@ const MyDocument = () => {
     <Html lang='ja-JP'>
       <Head>
         <meta name='application-name' content='MyApp' />
+        <link
+          rel='stylesheet'
+          href='https://fonts.googleapis.com/css2?family=Material+Icons'
+        ></link>
       </Head>
       <body>
         <Main />
