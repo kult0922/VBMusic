@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "firebase": "^9.4.1",
     "fuse.js": "^6.5.3",
     "html-react-parser": "^1.4.9",
     "next": "12.1.1",

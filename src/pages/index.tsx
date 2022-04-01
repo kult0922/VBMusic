@@ -1,15 +1,81 @@
+import { initializeApp } from 'firebase/app';
+import {
+  Firestore,
+  getFirestore,
+  getDocs,
+  doc,
+  updateDoc,
+  collection,
+  QueryDocumentSnapshot,
+  increment,
+} from 'firebase/firestore';
 import Fuse from 'fuse.js';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ContentCard from '../components/organism/ContentCard';
-import List from '../constants/video/data';
+import RankingCard from '../components/organism/RankingCard';
+import { List, videoKey2index, videoKeys } from '../constants/video/data';
 import styles from '../styles/Home.module.css';
+
+interface RankingElement {
+  key: string;
+  count: number;
+}
 
 const Home: NextPage = () => {
   // const [searchText, setSearchText] = useState('');
   const [result, setResult] = useState<Array<Fuse.FuseResult<Content>>>([]);
+  const [rankingDisp, setRankingDisp] = useState<Array<RankingElement>>([]);
+  const ranking: Array<RankingElement> = [];
+
+  useEffect(() => {
+    const firebaseConfig = {
+      apiKey: 'AIzaSyCmUnMiHUYcp39LRxYKq5zj1NJBbLqHFLE',
+      authDomain: 'vbmusic-d6ea2.firebaseapp.com',
+      projectId: 'vbmusic-d6ea2',
+    };
+    const app = initializeApp(firebaseConfig);
+
+    const db: Firestore = getFirestore(); // Firestore のインスタンスを初期化
+    if (!db) {
+      return;
+    }
+    console.log(videoKeys);
+    console.log('use effect');
+    for (const videoKey of Array.from(videoKeys)) {
+      console.log(videoKey);
+      getDocs(collection(db, videoKey)).then((querySnapshot) => {
+        querySnapshot.forEach((doc: QueryDocumentSnapshot) => {
+          ranking.push({ key: videoKey + doc.id, count: doc.data().count });
+        });
+        ranking.sort(function (a, b) {
+          return a.count > b.count ? -1 : 1; //オブジェクトの昇順ソート
+        });
+        console.log(ranking);
+        setRankingDisp(ranking.slice(0, 9));
+      });
+    }
+    /*
+
+    // for()
+    for (const videoKey of Array.from(videoKeys)) {
+      getDocs(collection(db, videoKey)).then((querySnapshot) => {
+        querySnapshot.forEach((doc: QueryDocumentSnapshot) => {
+          ranking.push({ key: videoKey + doc.id, count: doc.data().count });
+        });
+        // get data
+        // ranking.sort();
+        ranking.sort(function (a, b) {
+          return a.count > b.count ? -1 : 1; //オブジェクトの昇順ソート
+        });
+        console.log(ranking);
+        setRankingDisp(ranking.slice(0, 9));
+      });
+    }
+    */
+  }, []);
 
   const options = {
     // isCaseSensitive: false,
@@ -28,12 +94,20 @@ const Home: NextPage = () => {
     keys: ['song', 'songHira', 'singer', 'singerHira'],
   };
 
-  const handleChange = (event: { target: HTMLInputElement }) => {
+  const handleChange = async (event: { target: HTMLInputElement }) => {
     // setSearchText(event.target.value)
     const pattern = event.target.value;
     const fuse = new Fuse(List, options);
 
     setResult(fuse.search(pattern));
+
+    // const targetRef = doc(db, 'C1piK__gg_U?t=', '1212');
+
+    /*
+    await updateDoc(targetRef, {
+      count: increment(1),
+    });
+    */
   };
 
   // Change the pattern
@@ -52,20 +126,34 @@ const Home: NextPage = () => {
         <div className='text-3xl'>
           <span className='text-orange-600 text-3xl font-bold'>V</span>B Music
         </div>
-
-        <div className='mt-6'>
-          <div className='flex justify-center'>
-            <div className='flex items-center border-2 rounded-md box-shadow w-9/12 m-0 p-0 h-14'>
-              <div className='material-icons text-4xl pl-1 pr-1'>search</div>
-              <input className='h-10 w-9/12 border-none outline-none' onChange={handleChange} />
+        <div className='flex justify-center mt-2'>
+          <div className='md:w-9/12 md:max-w-3xl w-full'>
+            <div className='flex justify-center'>
+              <div className='flex items-center border-2 rounded-md box-shadow w-full m-0 p-0 h-14'>
+                <div className='material-icons text-4xl pl-1 pr-1'>search</div>
+                <input
+                  className='h-10 w-full border-none outline-none bg-black'
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div className='mt-6'>
+              {result.map((elm, i) => (
+                <div key={i}>
+                  <div key={i} className=''>
+                    <ContentCard content={elm} />
+                  </div>
+                  <div className='border-b border-gray-300 mt-2 mb-2 w-full' />
+                </div>
+              ))}
             </div>
           </div>
         </div>
-
+        <div className='text-3xl'>トレンドのやつ</div>
         <div className='mt-4'>
           <div className='flex flex-wrap justify-start'>
-            {result.map((elm, i) => (
-              <ContentCard content={elm} key={i} />
+            {rankingDisp.map((elm, i) => (
+              <RankingCard content={List[videoKey2index.get(elm.key)!]} key={i} />
             ))}
           </div>
         </div>

@@ -6,6 +6,9 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
+import { incrementer } from '../../store/Incrementer';
+import { getMinute } from '../../store/getMinute';
+import { getVideoKey } from '../../store/getVideoKey';
 
 interface Props {
   content: Fuse.FuseResult<Content>;
@@ -40,20 +43,36 @@ const highlighter = (resultItem: Fuse.FuseResult<Content>) => {
 };
 
 const ContentCard: React.FC<Props> = ({ content }) => {
-  console.log(content);
-  const hilight = highlighter(content);
-  console.log(hilight);
-  return (
-    <a href={content.item.url} target='_blank' rel='noopener noreferrer'>
-      <div className='m-2 border-2 shadow-md w-64'>
-        <Image alt='alt' width={280} height={160} src={content.item.thumbnails} />
-        <div className='text-xs'> {parse(hilight.songHira)} </div>
-        <div className='text-lg truncate whitespace-no-wrap'> {parse(hilight.song)} </div>
-        <div className='text-xs mt-1'> {parse(hilight.singerHira)} </div>
-        <div className='text-xs'> {parse(hilight.singer)} </div>
+  const handleClick = () => {
+    incrementer(getVideoKey(content.item.url), getMinute(content.item.url));
+  };
 
-        <div className='text-xs mt-3 truncate whitespace-no-wrap'> {parse(hilight.title)} </div>
-        <div className='text-xs'> {parse(hilight.date)} </div>
+  const hilight = highlighter(content);
+  return (
+    <a href={content.item.url} onClick={handleClick} target='_blank' rel='noopener noreferrer'>
+      <div className='flex items-center'>
+        <div className='w-16'>
+          <Image
+            alt='alt'
+            className='object-cover'
+            width={400}
+            height={400}
+            src={content.item.thumbnails}
+          />
+        </div>
+        <div className='ml-3 w-9/12'>
+          <div className='text-xs'> {parse(hilight.songHira)} </div>
+          <div className='text-lg truncate whitespace-no-wrap'> {parse(hilight.song)} </div>
+          <div className='text-xs text-gray-400'>
+            {' '}
+            {parse(hilight.singer)} / {parse(hilight.singerHira)}
+          </div>
+
+          <div className='text-xs text-gray-400 truncate whitespace-no-wrap'>
+            {' '}
+            {parse(hilight.title)}{' '}
+          </div>
+        </div>
       </div>
     </a>
   );
