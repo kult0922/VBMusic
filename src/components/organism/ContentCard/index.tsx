@@ -51,10 +51,10 @@ const ContentCard: React.FC<Props> = ({ content }) => {
   return (
     <a href={content.item.url} onClick={handleClick} target='_blank' rel='noopener noreferrer'>
       <div className='flex items-center'>
-        <div className='w-16'>
+        <div className='w-16 h-16 rounded overflow-hidden'>
           <Image
             alt='alt'
-            className='object-cover'
+            objectFit='cover'
             width={400}
             height={400}
             src={content.item.thumbnails}

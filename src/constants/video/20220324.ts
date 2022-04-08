@@ -281,7 +281,7 @@ const L: Array<Content> = [
   },
   {
     song: '十戒',
-    songHira: 'じゅっかい',
+    songHira: 'じっかい',
     singer: '中森明菜',
     singerHira: 'なかもりあきな',
     url: 'https://youtu.be/C1piK__gg_U?t=5086',

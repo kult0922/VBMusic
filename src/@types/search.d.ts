@@ -8,3 +8,8 @@ interface Content {
   title: string;
   date: string;
 }
+
+interface RankingElement {
+  key: string;
+  count: number;
+}

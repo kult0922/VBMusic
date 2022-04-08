@@ -1,11 +1,12 @@
 import { doc, updateDoc, increment, getFirestore, Firestore } from 'firebase/firestore';
 
-export const incrementer = async (collection: string, document: string) => {
+export const incrementer = async (videoKey: string, minute: string) => {
   const db: Firestore = getFirestore();
-  const targetRef = doc(db, collection, document);
+  const targetRef = doc(db, 'viewCounter', videoKey);
 
   console.log('increment');
+  console.log(videoKey, minute);
   await updateDoc(targetRef, {
-    count: increment(1),
+    [minute]: increment(1),
   });
 };
