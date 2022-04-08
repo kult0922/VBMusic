@@ -3,7 +3,6 @@ import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 
 const getHira = async (text: string) => {
-  console.log(text);
   if (text == undefined || text == '') return '';
   const axios = require(`axios`);
   const APIKEY = `0600b69daaa7e055a90f1b1ed767db31110c480ee72e5d51552348f747aa8934`; //API KEY
@@ -58,11 +57,8 @@ const Admin: NextPage = () => {
 
       // name hira
       const song_singer = clipArr.slice(1).join(' ');
-      console.log(song_singer);
       const song = song_singer.split('/')[0];
       const singer = song_singer.split('/')[1];
-      console.log(song);
-      console.log(singer);
 
       let minute = 0;
       for (let i = 0; i < timeArr.length; i++) {
@@ -94,8 +90,6 @@ const Admin: NextPage = () => {
       };
       out.push(content);
     }
-    console.log('===');
-    console.log(out);
     setResult(out);
   };
 
@@ -117,13 +111,9 @@ const Admin: NextPage = () => {
       timeArr.reverse();
 
       // name hira
-      console.log(clipArr);
       const song_singer = clipArr.slice(1).join(' ');
-      console.log(song_singer);
       const singer = song_singer.split('/')[0];
       const song = song_singer.split('/')[1];
-      console.log(song);
-      console.log(singer);
 
       let minute = 0;
       for (let i = 0; i < timeArr.length; i++) {
@@ -155,8 +145,6 @@ const Admin: NextPage = () => {
       };
       out.push(content);
     }
-    console.log('===');
-    console.log(out);
     setResult(out);
   };
 
@@ -180,8 +168,6 @@ const Admin: NextPage = () => {
       // name hira
       const song = clipArr.slice(1).join(' ');
       const singer = '';
-      console.log(song);
-      console.log(singer);
 
       let minute = 0;
       for (let i = 0; i < timeArr.length; i++) {
@@ -213,8 +199,6 @@ const Admin: NextPage = () => {
       };
       out.push(content);
     }
-    console.log('===');
-    console.log(out);
     setResult(out);
   };
 

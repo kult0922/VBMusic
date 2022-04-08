@@ -57,10 +57,6 @@ const List: Array<Content> = L01.concat(
 const videoKey2index = new Map<string, number>();
 const videoKeys = new Set<string>([]);
 
-console.log('total');
-console.log(List.length);
-console.log(List);
-
 for (let i = 0; i < List.length; i++) {
   const id = List[i].url.split('/').slice(-1)[0];
   videoKey2index.set(id, i);

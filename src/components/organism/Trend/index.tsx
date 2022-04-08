@@ -13,7 +13,6 @@ interface Props {
 function CustomRightArrow({ onClick }: { onClick?: any }) {
   function handleClick() {
     // do whatever you want on the right button click
-    console.log('Right button clicked, go to next slide');
     // ... and don't forget to call onClick to slide
     onClick();
   }
@@ -34,7 +33,6 @@ function CustomRightArrow({ onClick }: { onClick?: any }) {
 function CustomLeftArrow({ onClick }: { onClick?: any }) {
   function handleClick() {
     // do whatever you want on the right button click
-    console.log('Right button clicked, go to next slide');
     // ... and don't forget to call onClick to slide
     onClick();
   }

@@ -2,8 +2,10 @@ import '../styles/globals.css';
 import 'tailwindcss/tailwind.css';
 import { DefaultSeo } from 'next-seo';
 import type { AppProps } from 'next/app';
+import usePageView from '../components/store/pageView';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  usePageView();
   return (
     <>
       <DefaultSeo

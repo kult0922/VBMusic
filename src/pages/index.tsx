@@ -43,9 +43,7 @@ const Home: NextPage = () => {
       }
       const DB = await getDocs(collection(db, 'viewCounter'));
       DB.forEach((doc) => {
-        console.log(doc.data());
         for (const k in doc.data()) {
-          console.log(k, doc.data()[k]);
           viweCounters.push({ key: doc.id + k, count: doc.data()[k] });
         }
       });
