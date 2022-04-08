@@ -1,6 +1,6 @@
 import { documentId } from 'firebase/firestore';
 import React, { useState, useRef, useEffect } from 'react';
-import Carousel from 'react-multi-carousel';
+import Carousel, { ArrowProps } from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import RankingCard from '../RankingCard';
 
@@ -10,85 +10,99 @@ interface Props {
   videoKey2index: Map<string, number>;
 }
 
-const Trend: React.FC<Props> = ({ contentList, List, videoKey2index }) => {
-  useEffect(() => {
-    const scrollMax = elm.current?.scrollWidth != null ? elm.current.scrollWidth : 0;
-    console.log(scrollMax, 'scrollWidth');
-  }, []); // 第2引数には副作用関数の実行タイミングを制御する依存データを記述
-
-  const elm = useRef<HTMLDivElement>(null);
-  if (typeof document !== 'undefined') {
-    const te = document.getElementById('trend');
-    console.log(te?.scrollWidth, 'aa');
+function CustomRightArrow({ onClick }: { onClick?: any }) {
+  function handleClick() {
+    // do whatever you want on the right button click
+    console.log('Right button clicked, go to next slide');
+    // ... and don't forget to call onClick to slide
+    onClick();
   }
 
-  const [showLeftButton, setShowLeftButton] = useState(false);
-  const [showRightButton, setShowRightButton] = useState(true);
-  console.log(elm.current?.clientWidth, 'c');
-  const movement =
-    elm.current?.clientWidth != null ? elm.current.clientWidth - elm.current.clientWidth * 0.2 : 0;
-  // const scrollMax = elm.current.scrollWidth;
-  const clientWidth = elm.current?.clientWidth != null ? elm.current.clientWidth : 0;
-
-  // scroll　をwindowサイズで指定するようにする
-  const update = (movement: number) => {
-    if (elm.current?.scrollLeft == undefined) return;
-    if (elm.current.scrollLeft + elm.current.clientWidth + movement < elm.current.scrollWidth) {
-      setShowRightButton(true);
-    } else {
-      setShowRightButton(false);
-    }
-    if (elm?.current?.scrollLeft + movement > 0) {
-      setShowLeftButton(true);
-    } else {
-      setShowLeftButton(false);
-    }
-  };
-
-  const right = () => {
-    if (elm.current?.scrollLeft == undefined) return;
-    elm?.current?.scrollBy({
-      top: 0,
-      left: movement,
-      behavior: 'smooth',
-    });
-    update(movement);
-  };
-  const left = () => {
-    if (elm.current?.scrollLeft == undefined) return;
-    elm?.current?.scrollBy({
-      top: 0,
-      left: -movement,
-      behavior: 'smooth',
-    });
-    update(-movement);
-  };
   return (
-    <div className='relative'>
-      aa
-      <div ref={elm} id='trend' className='flex wrap flex-no-wrap overflow-scroll'>
+    <>
+      <div>
+        <button onClick={handleClick}>
+          <div className='absolute rounded-full bg-gray-50 ml-20 right-0 top-1/3 w-10 h-10'>
+            <div className='absolute left-1/2 top-1/2 translate-y-[-50%] translate-x-[-65%] w-3 h-3 border-r-3 border-t-3 border-gray-700 rotate-45 inline-block' />
+          </div>
+        </button>
+      </div>
+    </>
+  );
+}
+
+function CustomLeftArrow({ onClick }: { onClick?: any }) {
+  function handleClick() {
+    // do whatever you want on the right button click
+    console.log('Right button clicked, go to next slide');
+    // ... and don't forget to call onClick to slide
+    onClick();
+  }
+
+  return (
+    <>
+      <div>
+        <button onClick={handleClick}>
+          <div className='absolute rounded-full bg-gray-50 left-0 top-1/3 w-10 h-10'>
+            <div className='absolute left-1/2 top-1/2 translate-y-[-50%] translate-x-[-35%] w-3 h-3 border-l-3 border-b-3 border-gray-700 rotate-45 inline-block' />
+          </div>
+        </button>
+      </div>
+    </>
+  );
+}
+
+const Trend: React.FC<Props> = ({ contentList, List, videoKey2index }) => {
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 6,
+      partialVisibilityGutter: 30,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1200 },
+      items: 5,
+      partialVisibilityGutter: 30,
+    },
+    smallDesktop: {
+      breakpoint: { max: 1200, min: 1024 },
+      items: 4,
+      partialVisibilityGutter: 30,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 3,
+      partialVisibilityGutter: 10,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      partialVisibilityGutter: 110,
+    },
+  };
+
+  return (
+    <>
+      <Carousel
+        partialVisible={true}
+        autoPlay={false}
+        autoPlaySpeed={100000}
+        shouldResetAutoplay={true}
+        customRightArrow={<CustomRightArrow />}
+        customLeftArrow={<CustomLeftArrow />}
+        responsive={responsive}
+        containerClass='carousel-container'
+        // removeArrowOnDeviceType={['tablet', 'mobile']}
+        //deviceType={this.props.deviceType}
+        dotListClass='custom-dot-list-style'
+        itemClass='carousel-item-padding-40-px'
+      >
         {contentList.map((elm, i) => (
           <RankingCard content={List[videoKey2index.get(elm.key)!]} key={i} />
         ))}
-      </div>
-      <div>
-        {showLeftButton && (
-          <button onClick={left}>
-            <div className='absolute rounded-full bg-gray-50 top-1/2 w-10 h-10'>
-              <div className='absolute left-1/2 top-1/2 translate-y-[-50%] translate-x-[-35%] w-3 h-3 border-l-3 border-b-3 border-gray-700 rotate-45 inline-block' />
-            </div>
-          </button>
-        )}
-
-        {showRightButton && (
-          <button onClick={right}>
-            <div className='absolute rounded-full bg-gray-50 right-0 top-1/2 w-10 h-10'>
-              <div className='absolute left-1/2 top-1/2 translate-y-[-50%] translate-x-[-65%] w-3 h-3 border-r-3 border-t-3 border-gray-700 rotate-45 inline-block' />
-            </div>
-          </button>
-        )}
-      </div>
-    </div>
+      </Carousel>
+    </>
   );
 };
 

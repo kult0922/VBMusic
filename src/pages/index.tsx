@@ -8,34 +8,22 @@ import ContentCard from '../components/organism/ContentCard';
 import Footer from '../components/organism/Footer';
 import Header from '../components/organism/Header';
 import RankingCard from '../components/organism/RankingCard';
-import Trend from '../components/organism/TrendLi';
+import Trend from '../components/organism/Trend';
 import { List, videoKey2index, videoKeys } from '../constants/video/data';
 import styles from '../styles/Home.module.css';
 
-interface RankingElement {
+interface ViewCountElement {
   key: string;
   count: number;
 }
 
 const Home: NextPage = () => {
-  // const [searchText, setSearchText] = useState('');
   const [result, setResult] = useState<Array<Fuse.FuseResult<Content>>>([]);
-  const [rankingDisp, setRankingDisp] = useState<Array<RankingElement>>([]);
-  const ranking: Array<RankingElement> = [];
+  const [rankingDisp, setRankingDisp] = useState<Array<ViewCountElement>>([]);
+  const viweCounters: Array<ViewCountElement> = [];
   const options = {
-    // isCaseSensitive: false,
-    // includeScore: false,
-    // shouldSort: true,
     includeMatches: true,
-    // findAllMatches: false,
-    // minMatchCharLength: 1,
-    // location: 0,
     threshold: 0.3,
-    // distance: 100,
-    // useExtendedSearch: false,
-    // ignoreLocation: false,
-    // ignoreFieldNorm: false,
-    // fieldNormWeight: 1,
     keys: ['song', 'songHira', 'singer', 'singerHira'],
   };
   const fuse = new Fuse(List, options);
@@ -58,14 +46,14 @@ const Home: NextPage = () => {
         console.log(doc.data());
         for (const k in doc.data()) {
           console.log(k, doc.data()[k]);
-          ranking.push({ key: doc.id + k, count: doc.data()[k] });
+          viweCounters.push({ key: doc.id + k, count: doc.data()[k] });
         }
       });
 
-      ranking.sort(function (a, b) {
+      viweCounters.sort(function (a, b) {
         return a.count > b.count ? -1 : 1; //オブジェクトの昇順ソート
       });
-      setRankingDisp(ranking.slice(0, 9));
+      setRankingDisp(viweCounters.slice(0, 9));
     };
 
     getDataFromFireStore();
