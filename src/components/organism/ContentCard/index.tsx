@@ -51,14 +51,8 @@ const ContentCard: React.FC<Props> = ({ content }) => {
   return (
     <a href={content.item.url} onClick={handleClick} target='_blank' rel='noopener noreferrer'>
       <div className='flex items-center'>
-        <div className='w-16 h-16 rounded overflow-hidden'>
-          <Image
-            alt='alt'
-            objectFit='cover'
-            width={400}
-            height={400}
-            src={content.item.thumbnails}
-          />
+        <div className='w-16 h-16 rounded object-cover overflow-hidden'>
+          <img alt='alt' className='object-cover w-16 h-16' src={content.item.thumbnails} />
         </div>
         <div className='ml-3 w-9/12'>
           <div className='text-xs'> {parse(hilight.songHira)} </div>

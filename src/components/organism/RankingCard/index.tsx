@@ -14,9 +14,9 @@ const RankingCard: React.FC<Props> = ({ content }) => {
 
   return (
     <a href={content.url} target='_blank' rel='noopener noreferrer' onClick={handleClick}>
-      <div className='shadow-md w-48'>
-        <div className='w-48 rounded-md overflow-hidden'>
-          <Image alt='alt' objectFit='cover' width={224} height={128} src={content.thumbnails} />
+      <div className='shadow-md w-48 h-34'>
+        <div className='w-48 h-34 rounded-md overflow-hidden'>
+          <img alt='alt' className='object-cover w-48 h-34' src={content.thumbnails} />
         </div>
         <div className='text-lg truncate whitespace-no-wrap'> {content.song} </div>
         <div className='text-xs'> {content.singer} </div>
