@@ -70,7 +70,7 @@ const L: Array<Content> = [
     date: '2018/10/31',
   },
   {
-    song: 'Kissから始まるミステリー',
+    song: 'Kissからはじまるミステリー',
     songHira: 'きすからはじまるみすてりー',
     singer: '山下達郎',
     singerHira: 'やましたたつろう',

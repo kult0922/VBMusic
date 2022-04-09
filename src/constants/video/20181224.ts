@@ -10,7 +10,7 @@ const L: Array<Content> = [
     date: '2018/12/24',
   },
   {
-    song: 'シンデレラクリスマス',
+    song: 'シンデレラ・クリスマス',
     songHira: 'しんでれらくりすます',
     singer: 'KinKi Kids',
     singerHira: 'きんききっず',
@@ -170,7 +170,7 @@ const L: Array<Content> = [
     date: '2018/12/24',
   },
   {
-    song: '冬が始まるよ',
+    song: '冬がはじまるよ',
     songHira: 'ふゆがはじまるよ',
     singer: '槇原敬之',
     singerHira: 'まきはらのりゆき',

@@ -121,7 +121,7 @@ const L: Array<Content> = [
   },
   {
     song: 'ムーンライト伝説 KinKi Kids ver',
-    songHira: 'むーんらいとでんせつ(きんききっず)',
+    songHira: 'むーんらいとでんせつ きんききっず ver',
     singer: 'DALI',
     singerHira: 'だり',
     url: 'https://youtu.be/SJWiDX775yM?t=1897',
@@ -131,7 +131,7 @@ const L: Array<Content> = [
   },
   {
     song: 'ムーンライト伝説 米津玄師 ver',
-    songHira: 'むーんらいとでんせつ(こめつげんし)',
+    songHira: 'むーんらいとでんせつ よねづけんし ver',
     singer: 'DALI',
     singerHira: 'だり',
     url: 'https://youtu.be/SJWiDX775yM?t=2015',
@@ -141,7 +141,7 @@ const L: Array<Content> = [
   },
   {
     song: 'ムーンライト伝説 中居くんver',
-    songHira: 'むーんらいとでんせつ(なかいまさひろ)',
+    songHira: 'むーんらいとでんせつ なかい ver',
     singer: 'DALI',
     singerHira: 'だり',
     url: 'https://youtu.be/SJWiDX775yM?t=2064',
@@ -171,7 +171,7 @@ const L: Array<Content> = [
   },
   {
     song: 'ムーンライト伝説　エアロスミスver',
-    songHira: 'むーんらいとでんせつ',
+    songHira: 'むーんらいとでんせつ えあろすみすver',
     singer: 'DALI',
     singerHira: 'だり',
     url: 'https://youtu.be/SJWiDX775yM?t=2378',
@@ -361,7 +361,7 @@ const L: Array<Content> = [
   },
   {
     song: 'ムーンライト伝説 福山雅治 Hyde ver',
-    songHira: 'むーんらいとでんせつ(ふくやままさはる、えっちわいでぃーいー)',
+    songHira: 'むーんらいとでんせつ ふくやままさはる はいど ver',
     singer: 'DALI',
     singerHira: 'だり',
     url: 'https://youtu.be/SJWiDX775yM?t=4546',

@@ -80,7 +80,7 @@ const L: Array<Content> = [
     date: '2019/04/20',
   },
   {
-    song: 'ガラスの少年',
+    song: '硝子の少年',
     songHira: 'がらすのしょうねん',
     singer: 'Kinki Kids',
     singerHira: 'きんききっどず',
