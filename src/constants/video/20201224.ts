@@ -21,7 +21,7 @@ const L: Array<Content> = [
   },
   {
     song: 'All I Want for Christmas is You',
-    songHira: 'おーるあいをんとふぉーくりすますいずゆう',
+    songHira: 'おーるあいうぉんとふぉーくりすますいずゆー',
     singer: 'マライア・キャリー',
     singerHira: 'まらいあきゃりー',
     url: 'https://youtu.be/HoL1PbSyBI0?t=509',
