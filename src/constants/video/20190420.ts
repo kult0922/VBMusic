@@ -310,7 +310,7 @@ const L: Array<Content> = [
     date: '2019/04/20',
   },
   {
-    song: 'シンデレラガール',
+    song: 'シンデレラガール アカペラ ver',
     songHira: 'しんでれらがーる',
     singer: 'King&Prince',
     singerHira: 'きんぐあんどぷりんす',
