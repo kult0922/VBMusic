@@ -9,7 +9,8 @@ interface Props {
 
 const RankingCard: React.FC<Props> = ({ content }) => {
   const handleClick = () => {
-    incrementer(getVideoKey(content.url), getMinute(content.url));
+    // ランキングではviweCountをプラスしない
+    // incrementer(getVideoKey(content.url), getMinute(content.url));
   };
 
   return (
