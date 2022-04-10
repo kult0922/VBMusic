@@ -3,7 +3,7 @@ const L: Array<Content> = [
     song: '即興ソング墓',
     songHira: 'そっきょうそんぐはか',
     singer: 'VB',
-    singerHira: 'ぶいびー',
+    singerHira: 'ばーちゃるおばあちゃん',
     url: 'https://youtu.be/Oo6JTALObXQ?t=495',
     thumbnails: 'https://img.youtube.com/vi/AQYrlYvI9Wo/maxresdefault.jpg',
     title: 'バーチャルおばあちゃんの敬老の日三味線ライブ',

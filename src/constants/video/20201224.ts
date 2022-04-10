@@ -273,7 +273,7 @@ const L: Array<Content> = [
     song: '線香',
     songHira: 'せんこう',
     singer: 'VB',
-    singerHira: 'ぶいびー',
+    singerHira: 'ばーちゃるおばあちゃん',
     url: 'https://youtu.be/HoL1PbSyBI0?t=5352',
     thumbnails: 'https://img.youtube.com/vi/HoL1PbSyBI0/maxresdefault.jpg',
     title: '聖夜に防音室の性能を試したいVBのクリスマスカウントダウン三味線ライブ',

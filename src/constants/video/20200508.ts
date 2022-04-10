@@ -123,7 +123,7 @@ const L: Array<Content> = [
     song: 'うちでババろう',
     songHira: 'うちでばばろう',
     singer: 'VB',
-    singerHira: 'ぶいびー',
+    singerHira: 'ばーちゃるおばあちゃん',
     url: 'https://youtu.be/AEVB3vaI1Ng?t=2426',
     thumbnails: 'https://img.youtube.com/vi/AEVB3vaI1Ng/maxresdefault.jpg',
     title: '鬱なときに聴きたい……VBの五月病リラクゼーション三味線ライブ',
