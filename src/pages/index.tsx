@@ -112,7 +112,7 @@ const Home: NextPage = () => {
 
         <div className='flex justify-center mt-2'>
           <div className='md:w-11/12 md:max-w-7xl w-full'>
-            <div className='text-3xl'>トレンドのやつ</div>
+            <div className='text-2xl'>トレンドのやつ</div>
             <div className='mt-4'>
               <Trend contentList={rankingDisp} List={List} videoKey2index={videoKey2index}></Trend>
             </div>
