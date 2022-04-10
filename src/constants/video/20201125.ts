@@ -73,7 +73,7 @@ const L: Array<Content> = [
     song: 'カナリヤ',
     songHira: 'かなりや',
     singer: '米津玄師',
-    singerHira: 'よねずけんし',
+    singerHira: 'よねづけんし',
     url: 'https://youtu.be/1OY_S4XNpFk?t=1583',
     thumbnails: 'https://img.youtube.com/vi/1OY_S4XNpFk/maxresdefault.jpg',
     title: 'バーチャルおばあちゃん愛の三味線ライブ～昭和と令和を繋いで～',
