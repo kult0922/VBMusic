@@ -148,11 +148,14 @@ const Admin: NextPage = () => {
     setResult(out);
   };
 
+  /*
+  hh:mm:ss song / singer
+   */
   const handleChange3 = async (event: { target: HTMLTextAreaElement }) => {
     // prm //
-    const title = 'バーチャルおばあちゃんの三味線放送';
-    const date = '2020/03/10';
-    const thuthumbnails = 'https://img.youtube.com/vi/La_fBYC47EY/maxresdefault.jpg';
+    const title = 'なんでもリクエストされたら歌ってみせるVBの三味線ライブ2023初夏';
+    const date = '2023/05/30';
+    const thuthumbnails = 'https://img.youtube.com/vi/Bj2d4hNzqos/maxresdefault.jpg';
 
     const out = [];
     const original = event.target.value;
@@ -165,9 +168,9 @@ const Admin: NextPage = () => {
       const timeArr = time.split(':');
       timeArr.reverse();
 
-      // name hira
-      const song = clipArr.slice(1).join(' ');
-      const singer = '';
+      const song_singer = clipArr.slice(1).join('');
+      const song = song_singer.split('/')[0];
+      const singer = song_singer.split('/')[1];
 
       let minute = 0;
       for (let i = 0; i < timeArr.length; i++) {
@@ -181,12 +184,10 @@ const Admin: NextPage = () => {
           minute += 3600 * parseInt(timeArr[i]);
         }
       }
-      const url = baseUrl + '?t=' + String(minute);
+      const url = baseUrl + '&t=' + String(minute);
 
-      const songHira = await getHira(song);
-      const singerHira = '';
-      // const songHira = '';
-      // const singerHira = '';
+      const songHira = ''; // await getHira(song);
+      const singerHira = ''; // await getHira(singer);
       const content: Content = {
         song: song,
         songHira: songHira,
@@ -199,6 +200,8 @@ const Admin: NextPage = () => {
       };
       out.push(content);
     }
+
+    console.log(out);
     setResult(out);
   };
 

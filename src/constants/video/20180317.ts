@@ -233,7 +233,7 @@ const L: Array<Content> = [
     song: '君が代',
     songHira: 'きみがよ',
     singer: '国歌',
-    singerHira: 'こっか[',
+    singerHira: 'こっか',
     url: 'https://youtu.be/JFFNJvXvEWI?t=5392',
     thumbnails: 'https://img.youtube.com/vi/JFFNJvXvEWI/maxresdefault.jpg',
     title: 'バーチャルおばあちゃんのヤング三味線ライブ',
